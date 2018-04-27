@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+        
+        <bean id="helloWorldImpl1" class="com.example.demo.aop.HelloWorldImpl1" />
+        <bean id="helloWorldImpl2" class="com.example.demo.aop.HelloWorldImpl2" />
+        <bean id="timeHandler" class="com.example.demo.aop.TimeHandler" />
+        
+        <aop:config>
+            <aop:aspect id="time" ref="timeHandler"><!--要插入的方法，例如日志打印  -->
+         <!--在哪里插入  -->       <aop:pointcut id="addAllMethod" expression="execution(* com.example.demo.aop.HelloWorld.*(..))" />
+         <!-- 前置通知 -->        <aop:before method="printTime" pointcut-ref="addAllMethod" />
+         <!-- 后置通知 -->        <aop:after method="printTime" pointcut-ref="addAllMethod" />
+            </aop:aspect>
+        </aop:config>
+</beans>
