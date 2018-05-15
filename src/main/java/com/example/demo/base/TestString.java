@@ -10,6 +10,9 @@ public class TestString {
 		String str5 = "ab" + "cd";
 		System.out.println(str1 == str4);
 		System.out.println(str1 == str5);
+		String sl = new String("qq");
+		sl = str2 + "csllll";// 这个过程中产生了新的对象
+		System.out.println(sl);
 
 	}
 	/**
